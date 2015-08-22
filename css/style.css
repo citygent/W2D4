@@ -9,8 +9,8 @@ h1 {
 	font-weight: bold;
 }
 #board {
-	width: 600px;
-	height: 600px;
+	width: 400px;
+	height: 400px;
 	background-color: rgba(200,200,200,.5);
 	margin: 0 auto;
 	padding: 0;
@@ -18,8 +18,8 @@ h1 {
 
 .tile {
 	background-color: rgba(122,0,0,.2);
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 0;
 	padding: 0;
