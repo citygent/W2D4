@@ -4,22 +4,18 @@ var gameBoard = [];
 var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 //selects random tile from possilbe list, pushes two of each to gameboard. 
-function buildBoard(rows, cols) {
-	for(i=0; i < cols; i++) {
-		for (j=0; j < rows; j++) {
+function buildBoard(tiles) {
+	for(i=0; i < (tiles/2); i++) { //needs /2 because places two of each innit.
 			var randomTile = possibleTiles[Math.floor(Math.random()*possibleTiles.length)];
+			console.log(randomTile);
 			gameBoard.push(randomTile);
 			gameBoard.push(randomTile); 
-			debugger; //bug: can select tiles more than once?
-			possibleTiles.splice([randomTile], 1);
+			possibleTiles.splice(possibleTiles.indexOf(randomTile),1);
 		}
 	}
-}
 
-buildBoard(4,4);
-console.log(gameBoard);
+buildBoard(16);
+// console.log("gameBoard:"+gameBoard);
+// console.log("UnselectedTiles:"+possibleTiles);
+// console.log(gameBoard.length);
 
-
-function shuffleBoard(board) {
-
-}
