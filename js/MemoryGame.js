@@ -1,11 +1,21 @@
 $(document).ready(function(){
   console.log("PRIORITY ONE\nENSURE RETURN OF ORGANISM FOR ANALYSIS.\nALL OTHER CONSIDERATIONS SECONDARY.\nCREW EXPENDABLE.");
   setupBoard();
+  $('#logoimg').css({opacity:0})
+  setTimeout(function(){
+    flicker();
+    }, 3000);
+
 })
 
 // build game for 16 tiles first, if time refactor for any size.
 var gameTiles = [];
 var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var flip1 = null;
+var flip2 = null;
+var currentlyFlipped = 0;
+var errors = 0;
+var correct = 0;
 
 function eventListeners(){
   $('.tile').on('click', function(event) {
@@ -15,20 +25,16 @@ function eventListeners(){
     // console.log(this.id); // non jQueeery option. 
     var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
     // console.log(tileimg);
-    if (currentlyFlipped < 2 && ($(id).html() == "")) { //checks target tile isn't already flipped. 
+    if ((currentlyFlipped < 2) && ($(id).html() == "")) { //checks target tile isn't already flipped. 
       flipTile(id, tileimg);
     }
   });
 }
 
-var flip1 = null;
-var flip2 = null;
-var currentlyFlipped = 0;
-
 function flipTile(id, tileimg){ // tells tile to display
     if (currentlyFlipped == 0) {
       flip1 = id;
-      $(id).html(tileimg);                          // puts data attribute(letter) into html of div.
+      $(id).html(tileimg); // puts data attribute(letter) into html of div.
       currentlyFlipped++;
       // debugger;
     } else if (currentlyFlipped == 1) {
@@ -47,29 +53,31 @@ function flipTile(id, tileimg){ // tells tile to display
 function checkMatch(flip1, flip2) {
   if ($(flip1).html() == $(flip2).html()){
     console.log("WeheyyyyY!");
+    correct++;
     currentlyFlipped = 0;
+    checkWinner();
   } else {
     setTimeout(function(){
       unflipTile(flip2);
       unflipTile(flip1);
-      currentlyFlipped = 0;
-    }, 4000);    
+      errors++;
+    }, 3000);    
   }
 }
 
 function unflipTile (id) { // tells tile to hide
     $(id).html("");
-    flipTile.currentlyFlipped--
+    currentlyFlipped--
 }
 
 function setupBoard() {
   getGameTiles(16); 
-  console.log("Selected Tiles:"+gameTiles);
-  console.log("Amount of Selected Tiles:"+gameTiles.length);
-  console.log("Unselected Tiles:"+possibleTiles);
+  // console.log("Selected Tiles:"+gameTiles);
+  // console.log("Amount of Selected Tiles:"+gameTiles.length);
+  // console.log("Unselected Tiles:"+possibleTiles);
   gameTiles = randomiseBoard(gameTiles);
-  console.log("Shuffled Game Tiles:"+gameTiles);
-  console.log("Amount of Shuffled Tiles:"+gameTiles.length);
+  // console.log("Shuffled Game Tiles:"+gameTiles);
+  // console.log("Amount of Shuffled Tiles:"+gameTiles.length);
   // this forloop goes through array of selested and randomised tiles and builds divs for them on page. 
   for (i=0; i < gameTiles.length; i++) {  // have a look at jquery.each / $.each(array, function(){} when refactoring. 
  // $('<div class="tile" data-tile="'+ gameTiles[i] +'" </div>').appendTo('#board'); // this looks funny in dev tools, investigate why. 
@@ -99,6 +107,41 @@ function randomiseBoard(arrayOfTiles) {
 	  }
 	  return shuffled;
 }
+
+function checkWinner() {
+  if (correct = 8) {
+
+  }
+}
+
+function flicker(){
+  $logo = $('#logoimg');
+  $logo.animate({opacity:1}, {duration:200})
+  .animate({opacity:0}, {duration:10})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:10})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:50})
+  .animate({opacity:1}, {duration:35})
+  .animate({opacity:0}, {duration:75})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:10})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:50})
+  .animate({opacity:1}, {duration:75})
+  .animate({opacity:0}, {duration:100})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:100})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:50})
+  .animate({opacity:1}, {duration:200})
+  .animate({opacity:0}, {duration:75})
+  .animate({opacity:1}, {duration:10})
+  .animate({opacity:0}, {duration:50})
+  .animate({opacity:1}, {duration:200})
+  .animate({opacity:0}, {duration:75})
+  .animate({opacity:1}, {duration:100});
+};
 
 // images/airlock.png
 // images/area-sheilded-from-radiation.png
