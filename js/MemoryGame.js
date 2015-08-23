@@ -6,7 +6,6 @@ $(document).ready(function(){
 // build game for 16 tiles first, if time refactor for any size.
 var gameTiles = [];
 var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var currentlyFlipped = 0;
 
 function eventListeners(){
   $('.tile').on('click', function(event) {
@@ -16,7 +15,7 @@ function eventListeners(){
     // console.log(this.id); // non jQueeery option. 
     var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
     // console.log(tileimg);
-    if (currentlyFlipped < 2 && ($(id).html() == "")) {
+    if (/*currentlyFlipped < 2 &&*/ ($(id).html() == "")) {
     flipTile(id, tileimg);
     }
   });
@@ -26,28 +25,40 @@ var flip1 = null;
 var flip2 = null;
 
 function flipTile(id, tileimg){ // tells tile to display
+  var currentlyFlipped = 0;
     if (currentlyFlipped == 0) {
-    flip1 = id;
-    $(id).html(tileimg);                          // puts data attribute(letter) into html of div.
-    currentlyFlipped++;
-    debugger;
+      flip1 = id;
+      $(id).html(tileimg);                          // puts data attribute(letter) into html of div.
+      currentlyFlipped++;
+      // debugger;
+      checkMatch(flip1, flip2);
     } else if (currentlyFlipped == 1) {
-    flip2 = id;
-    $(id).html(tileimg);
-    currentlyFlipped++;
-    debugger;
+      flip2 = id;
+      $(id).html(tileimg);
+      currentlyFlipped++;
+      // console.log(flip1);
+      // console.log(flip2);
+      // console.log($(flip1).html())
+      // console.log($(flip2).html())
+      // debugger;
+      checkMatch(flip1, flip2);
+  } /// This is now the messiest function I've ever written jesus christ what is wrong with me. 
+}
+
+function checkMatch(flip1, flip2) {
+  if ($(flip1).html() == $(flip2).html()){
+    console.log("WeheyyyyY!");
+  } else {
     setTimeout(function(){
       unflipTile(flip2);
-    }, 4000);
-    setTimeout(function(){
       unflipTile(flip1);
-    }, 4000);
-  } /// This is now the messiest function I've ever written jesus christ what is wrong with me. 
+    }, 4000);    
+  }
 }
 
 function unflipTile (id) { // tells tile to hide
     $(id).html("");
-    currentlyFlipped--
+    flipTile.currentlyFlipped--
 }
 
 function setupBoard() {
