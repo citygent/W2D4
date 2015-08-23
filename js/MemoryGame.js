@@ -6,21 +6,36 @@ $(document).ready(function(){
 // build game for 16 tiles first, if time refactor for any size.
 var gameTiles = [];
 var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
+var currentlyFlipped = 0;
 
 function eventListeners(){
   $('.tile').on('click', function(event) {
     var id = ($(this));
-    console.log(id);
-    console.log(this.id);
-    var tileimg = ($(this).data("tile"))//From docs: var mydata = $( "#mydiv" ).data();
-    console.log(tileimg)
+    // console.log(id);
+    // console.log($(this).attr("id")); // use correct syntax!! Last nigth you were trying ($(this).id).
+    // console.log(this.id); // non jQueeery option. 
+    var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
+    // console.log(tileimg);
     flipTile(id, tileimg);
   });
 }
 
 function flipTile(id, tileimg){ // tells tile to display
-  $(id).html(tileimg);
+  //if tile html !== "" // find a way of stopping user click same tile twice.
+  if (currentlyFlipped < 2 && ($(id).html() == "")) {
+    // debugger;
+    console.log('flipping tile...')
+    $(id).html(tileimg);
+    setTimeout(function(){
+      unflipTile(id, tileimg);
+    }, 6000);
+    currentlyFlipped++;
+  }
+}
+
+
+function unflipTile (id, tileimg) { // tells tile to hide
+    $(id).html("");
 }
 
 function setupBoard() {
