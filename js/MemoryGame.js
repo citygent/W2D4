@@ -16,25 +16,36 @@ function eventListeners(){
     // console.log(this.id); // non jQueeery option. 
     var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
     // console.log(tileimg);
+    if (currentlyFlipped < 2 && ($(id).html() == "")) {
     flipTile(id, tileimg);
+    }
   });
 }
 
+var flip1 = null;
+var flip2 = null;
+
 function flipTile(id, tileimg){ // tells tile to display
-  // if there isn't already two tiles flipped, and the tile in question isn't already flipped:
-  if (currentlyFlipped < 2 && ($(id).html() == "")) {
-    // debugger;
-    // console.log('flipping tile...')
-    $(id).html(tileimg); // puts data attribute(letter) into html of div.
-    setTimeout(function(){
-      unflipTile(id, tileimg);
-    }, 4000);
+    if (currentlyFlipped == 0) {
+    flip1 = id;
+    $(id).html(tileimg);                          // puts data attribute(letter) into html of div.
     currentlyFlipped++;
-  }
+    debugger;
+    } else if (currentlyFlipped == 1) {
+    flip2 = id;
+    $(id).html(tileimg);
+    currentlyFlipped++;
+    debugger;
+    setTimeout(function(){
+      unflipTile(flip2);
+    }, 4000);
+    setTimeout(function(){
+      unflipTile(flip1);
+    }, 4000);
+  } /// This is now the messiest function I've ever written jesus christ what is wrong with me. 
 }
 
-
-function unflipTile (id, tileimg) { // tells tile to hide
+function unflipTile (id) { // tells tile to hide
     $(id).html("");
     currentlyFlipped--
 }
@@ -77,3 +88,41 @@ function randomiseBoard(arrayOfTiles) {
 	  return shuffled;
 }
 
+// images/airlock.png
+// images/area-sheilded-from-radiation.png
+// images/artificial-gravity-area-non-pressurized-suit-required.png
+// images/astronic-systems.png
+// images/autodoc.png
+// images/bridge.png
+// images/bulkhead-door.png
+// images/coffee.png
+// images/computer-terminal.png
+// images/cryogenic-vault.png
+// images/direction-down.png
+// images/direction-left.png
+// images/direction-right.png
+// images/direction-up.png
+// images/exhaust.png
+// images/galley.png
+// images/hazard-warning.png
+// images/high-radiation.png
+// images/intercom.png
+// images/ladderway.png
+// images/laser.png
+// images/life-support-systems.png
+// images/maintenance.png
+// images/medical-life-support-systems.png
+// images/medical.png
+// images/no-gravity-area-non-pressurized-suit-required.png
+// images/non-pressurized-area-beyond.png
+// images/organic-storage-foodstuffs.png
+// images/photonic-systems.png
+// images/pressure-suit-locker.png
+// images/pressurized-area-aritficial-gravity-absent.png
+// images/pressurized-area-artificial-gravity.png
+// images/pressurized-area.png
+// images/radiation-hazard.png
+// images/refridgerated-storage-medical.png
+// images/refridgerated-storage-organic-foodstuffs.png
+// images/refridgeration.png
+// images/storage.png
