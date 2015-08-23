@@ -1,12 +1,58 @@
 @import url(http://fonts.googleapis.com/css?family=Michroma);
-
+/*similar to Eurostile*/
+@import url(http://fonts.googleapis.com/css?family=Anonymous+Pro:700);
+/*similar to CityLight*/
 body {
-  text-align: center;
-  font-family: 'Michroma', Arial, Helvetica, sans-serif;
+  background-color: black;
+  color: white;
 }
-h1 {
-	text-align: center;
-	font-weight: bold;
+header {
+  margin: 30px auto;
+  width: 90%;
+  height: 100px;
+}
+#header-text {
+  width: 70%;
+  display: inline-block;
+  height: 100%;
+  float: left;
+
+  margin-left: 20px;
+  color: rgb(50, 175, 200);
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 18px;
+}
+#logo {
+  width: 29%;
+  display: inline-block;
+  height: 100%;
+  float: left;
+}
+#logo img {
+  max-width: 100%;
+}
+h4 {
+  vertical-align: middle;/* Can't get this to work*/
+  margin-top: 0;
+}
+#game {
+  float: left;
+  width: 100%;
+}
+section {
+  width: 70%;
+  margin: 0;
+  float: left;
+  vertical-align: top;
+  display: inline-block;
+}
+aside {
+  width: 20%;
+  margin: 0;
+  float: right;
+  vertical-align: top;
+  display: inline-block;
 }
 #board {
 	width: 400px;

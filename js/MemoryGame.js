@@ -21,14 +21,14 @@ function eventListeners(){
 }
 
 function flipTile(id, tileimg){ // tells tile to display
-  //if tile html !== "" // find a way of stopping user click same tile twice.
+  // if there isn't already two tiles flipped, and the tile in question isn't already flipped:
   if (currentlyFlipped < 2 && ($(id).html() == "")) {
     // debugger;
-    console.log('flipping tile...')
-    $(id).html(tileimg);
+    // console.log('flipping tile...')
+    $(id).html(tileimg); // puts data attribute(letter) into html of div.
     setTimeout(function(){
       unflipTile(id, tileimg);
-    }, 6000);
+    }, 4000);
     currentlyFlipped++;
   }
 }
@@ -36,6 +36,7 @@ function flipTile(id, tileimg){ // tells tile to display
 
 function unflipTile (id, tileimg) { // tells tile to hide
     $(id).html("");
+    currentlyFlipped--
 }
 
 function setupBoard() {
