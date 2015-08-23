@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('#logoimg').css({opacity:0})
   setTimeout(function(){
     flicker();
-    }, 3000);
+    }, 1000);
 
 })
 
@@ -61,7 +61,7 @@ function checkMatch(flip1, flip2) {
       unflipTile(flip2);
       unflipTile(flip1);
       errors++;
-    }, 3000);    
+    }, 2000);    
   }
 }
 
@@ -109,8 +109,8 @@ function randomiseBoard(arrayOfTiles) {
 }
 
 function checkWinner() {
-  if (correct = 8) {
-
+  if (correct === 8) {
+    console.log('Winner winner, chicken dinner.')
   }
 }
 
