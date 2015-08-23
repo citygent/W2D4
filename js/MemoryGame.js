@@ -15,23 +15,22 @@ function eventListeners(){
     // console.log(this.id); // non jQueeery option. 
     var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
     // console.log(tileimg);
-    if (/*currentlyFlipped < 2 &&*/ ($(id).html() == "")) {
-    flipTile(id, tileimg);
+    if (currentlyFlipped < 2 && ($(id).html() == "")) { //checks target tile isn't already flipped. 
+      flipTile(id, tileimg);
     }
   });
 }
 
 var flip1 = null;
 var flip2 = null;
+var currentlyFlipped = 0;
 
 function flipTile(id, tileimg){ // tells tile to display
-  var currentlyFlipped = 0;
     if (currentlyFlipped == 0) {
       flip1 = id;
       $(id).html(tileimg);                          // puts data attribute(letter) into html of div.
       currentlyFlipped++;
       // debugger;
-      checkMatch(flip1, flip2);
     } else if (currentlyFlipped == 1) {
       flip2 = id;
       $(id).html(tileimg);
@@ -48,10 +47,12 @@ function flipTile(id, tileimg){ // tells tile to display
 function checkMatch(flip1, flip2) {
   if ($(flip1).html() == $(flip2).html()){
     console.log("WeheyyyyY!");
+    currentlyFlipped = 0;
   } else {
     setTimeout(function(){
       unflipTile(flip2);
       unflipTile(flip1);
+      currentlyFlipped = 0;
     }, 4000);    
   }
 }
