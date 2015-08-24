@@ -131,13 +131,13 @@ function errorsDisplay() {
 function flipDisplay(flip) { //displays value of tile to player.
   if (currentlyFlipped == 0) {
     $('#tile1alt').addClass('show');
-    $('#tile1alt').html($(flip).find('img').attr('alt'));
+    $('#tile1alt').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile1alt').removeClass('show');
       }, 3000);    
   } else if (currentlyFlipped == 1) {
     $('#tile2alt').addClass('show');
-    $('#tile2alt').html($(flip).find('img').attr('alt'));
+    $('#tile2alt').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile2alt').removeClass('show');
       }, 3000);  

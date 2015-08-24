@@ -80,7 +80,7 @@ p.title {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  animation: type4 4s steps(60, end); 
+  animation: type4 2s steps(60, end); 
 }
 @keyframes type4 {
   0%{width: 0;}
@@ -135,7 +135,7 @@ aside p {
   color: rgba(205, 25, 25, .8);
   padding: 0 0 0 20px;
 }
-.tilealt {
+.tilealt p {
   font-size: 13px;
 }
 .show {
