@@ -120,7 +120,7 @@ function randomiseBoard(arrayOfTiles) {
 
 function checkWinner() {
   if (correct === 8) {
-    console.log('Winner winner, chicken dinner.')
+    $('#gameOver').addClass('show').html('  TESTING COMPLETE.');
   }
 }
 function matchDisplay() {
