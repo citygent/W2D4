@@ -10,12 +10,18 @@ $(document).ready(function(){
 
 // build game for 16 tiles first, if time refactor for any size.
 var gameTiles = [];
-var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var flip1 = null;
 var flip2 = null;
 var currentlyFlipped = 0;
 var errors = 0;
 var correct = 0;
+
+//When logic is all ironed out, start plugging in the images instead of letters.
+// $(this).attr({src: $(this).attr('data-tile'), 'data-tile': $(this).attr('src');
+
+// animating this is going to be a pain in the arse, see: http://jsfiddle.net/YaUPs/
+
 
 function eventListeners(){
   $('.tile').on('click', function(event) {
@@ -143,41 +149,43 @@ function flicker(){
   .animate({opacity:1}, {duration:100});
 };
 
-// images/airlock.png
-// images/area-sheilded-from-radiation.png
-// images/artificial-gravity-area-non-pressurized-suit-required.png
-// images/astronic-systems.png
-// images/autodoc.png
-// images/bridge.png
-// images/bulkhead-door.png
-// images/coffee.png
-// images/computer-terminal.png
-// images/cryogenic-vault.png
-// images/direction-down.png
-// images/direction-left.png
-// images/direction-right.png
-// images/direction-up.png
-// images/exhaust.png
-// images/galley.png
-// images/hazard-warning.png
-// images/high-radiation.png
-// images/intercom.png
-// images/ladderway.png
-// images/laser.png
-// images/life-support-systems.png
-// images/maintenance.png
-// images/medical-life-support-systems.png
-// images/medical.png
-// images/no-gravity-area-non-pressurized-suit-required.png
-// images/non-pressurized-area-beyond.png
-// images/organic-storage-foodstuffs.png
-// images/photonic-systems.png
-// images/pressure-suit-locker.png
-// images/pressurized-area-aritficial-gravity-absent.png
-// images/pressurized-area-artificial-gravity.png
-// images/pressurized-area.png
-// images/radiation-hazard.png
-// images/refridgerated-storage-medical.png
-// images/refridgerated-storage-organic-foodstuffs.png
-// images/refridgeration.png
-// images/storage.png
+// <img src='./images/airlock.png'>
+
+var possibleTiles = ['<img src="images/airlock.png">',
+'<img src="images/area-sheilded-from-radiation.png">',
+'<img src="images/artificial-gravity-area-non-pressurized-suit-required.png">',
+'<img src="images/astronic-systems.png">',
+'<img src="images/autodoc.png">',
+'<img src="images/bridge.png">',
+'<img src="images/bulkhead-door.png">',
+'<img src="images/coffee.png">',
+'<img src="images/computer-terminal.png">',
+'<img src="images/cryogenic-vault.png">',
+'<img src="images/direction-down.png">',
+'<img src="images/direction-left.png">',
+'<img src="images/direction-right.png">',
+'<img src="images/direction-up.png">',
+'<img src="images/exhaust.png">',
+'<img src="images/galley.png">',
+'<img src="images/hazard-warning.png">',
+'<img src="images/high-radiation.png">',
+'<img src="images/intercom.png">',
+'<img src="images/ladderway.png">',
+'<img src="images/laser.png">',
+'<img src="images/life-support-systems.png">',
+'<img src="images/maintenance.png">',
+'<img src="images/medical-life-support-systems.png">',
+'<img src="images/medical.png">',
+'<img src="images/no-gravity-area-non-pressurized-suit-required.png">',
+'<img src="images/non-pressurized-area-beyond.png">',
+'<img src="images/organic-storage-foodstuffs.png">',
+'<img src="images/photonic-systems.png">',
+'<img src="images/pressure-suit-locker.png">',
+'<img src="images/pressurized-area-aritficial-gravity-absent.png">',
+'<img src="images/pressurized-area-artificial-gravity.png">',
+'<img src="images/pressurized-area.png">',
+'<img src="images/radiation-hazard.png">',
+'<img src="images/refridgerated-storage-medical.png">',
+'<img src="images/refridgerated-storage-organic-foodstuffs.png">',
+'<img src="images/refridgeration.png">',
+'<img src="images/storage.png">']
