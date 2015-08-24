@@ -41,14 +41,14 @@ function flipTile(id, tileimg){ // tells tile to display
     if (currentlyFlipped == 0) {
       flip1 = id;
       $(id).html(tileimg); // puts data attribute(letter) into html of div.
-      currentlyFlipped++;
       // debugger;
       flipDisplay(flip1);
+      currentlyFlipped++;
     } else if (currentlyFlipped == 1) {
       flip2 = id;
       $(id).html(tileimg);
-      currentlyFlipped++;
       flipDisplay(flip2);
+      currentlyFlipped++;
       // console.log(flip1);
       // console.log(flip2);
       // console.log($(flip1).html())
@@ -127,9 +127,21 @@ function errorsDisplay() {
   $('#errors').addClass('show');
   $('#errors').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
 }
-function flipDisplay(flip) {
-  console.log('youre in flipDisplay')
-  console.log($(flip).find('img').attr('alt'));
+
+function flipDisplay(flip) { //displays value of tile to player.
+  if (currentlyFlipped == 0) {
+    $('#tile1alt').addClass('show');
+    $('#tile1alt').html($(flip).find('img').attr('alt'));
+    setTimeout(function(){
+      $('#tile1alt').removeClass('show');
+      }, 3000);    
+  } else if (currentlyFlipped == 1) {
+    $('#tile2alt').addClass('show');
+    $('#tile2alt').html($(flip).find('img').attr('alt'));
+    setTimeout(function(){
+      $('#tile2alt').removeClass('show');
+      }, 3000);  
+  }
 }
 
 function flicker(element){
@@ -159,8 +171,6 @@ function flicker(element){
   .animate({opacity:0}, {duration:75})
   .animate({opacity:1}, {duration:100});
 };
-
-// <img src='./images/airlock.png'>
 
 var possibleTiles = [
 '<img src="images/airlock.png" alt="Airlock">',
