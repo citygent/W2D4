@@ -63,10 +63,11 @@ function checkMatch(flip1, flip2) {
     currentlyFlipped = 0;
     checkWinner();
   } else {
+    errors++;
+    errorsDisplay();
     setTimeout(function(){
       unflipTile(flip2);
       unflipTile(flip1);
-      errors++;
     }, 2000);    
   }
 }
@@ -118,6 +119,12 @@ function checkWinner() {
   if (correct === 8) {
     console.log('Winner winner, chicken dinner.')
   }
+}
+
+
+function errorsDisplay() {
+  $('#errors').addClass('show');
+  $('#errors').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
 }
 
 function flicker(element){
