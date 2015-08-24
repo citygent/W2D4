@@ -1,9 +1,11 @@
 $(document).ready(function(){
   console.log("PRIORITY ONE\nENSURE RETURN OF ORGANISM FOR ANALYSIS.\nALL OTHER CONSIDERATIONS SECONDARY.\nCREW EXPENDABLE.");
+  $logo = $('#logoimg');
   setupBoard();
   $('#logoimg').css({opacity:0})
   setTimeout(function(){
-    flicker();
+    flicker($logo);
+    flicker($('main'));
     }, 1000);
 
 })
@@ -17,8 +19,6 @@ var currentlyFlipped = 0;
 var errors = 0;
 var correct = 0;
 
-//When logic is all ironed out, start plugging in the images instead of letters.
-// $(this).attr({src: $(this).attr('data-tile'), 'data-tile': $(this).attr('src');
 
 // animating this is going to be a pain in the arse, see: http://jsfiddle.net/YaUPs/
 
@@ -120,9 +120,8 @@ function checkWinner() {
   }
 }
 
-function flicker(){
-  $logo = $('#logoimg');
-  $logo.animate({opacity:1}, {duration:200})
+function flicker(element){
+  element.animate({opacity:1}, {duration:200})
   .animate({opacity:0}, {duration:10})
   .animate({opacity:1}, {duration:10})
   .animate({opacity:0}, {duration:10})

@@ -5,6 +5,8 @@
 html {
   background-color: black;
   color: white;
+  position: relative;
+  height: 100%;
 }
 body {
   width: 800px;
@@ -29,23 +31,45 @@ header {
   margin: 0;
   padding: 0;
 }
-p #title {
+p {
+  font-size: 16px;
+}
+p.title {
   font-size: 20px;
   line-height: 25px;
   letter-spacing: 4px;
 }
-p {
+.typingslow {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  animation: type2 6s steps(60, end); 
+  animation: type 7s steps(60, end); 
 }
 @keyframes type { 
-  from { width: 0; } 
+  0% { width: 0; } 
+  25%{width: 0;}
+  100%{ width: 100; } 
 } 
+.typingfast {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  animation: type2 8s steps(60, end); 
+}
 @keyframes type2 {
   0%{width: 0;}
-  50%{width: 0;}
+  75%{width: 0;}
+  100%{ width: 100; } 
+}
+.typingfastdelayed {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  animation: type3 10s steps(60, end); 
+}
+@keyframes type3 {
+  0%{width: 0;}
+  80%{width: 0;}
   100%{ width: 100; } 
 }
 #logo {
@@ -60,40 +84,46 @@ p {
   max-height: 65px;
   vertical-align: middle;
 }
-#game {
-  float: left;
-  width: 100%;
+main {
+  width: 800px;
+  height: 400px;
 }
 section {
-  width: 70%;
-  margin: 0;
-  float: left;
-  vertical-align: top;
+  height: 100%;
+  width: 69%;
+  /*margin: 0;*/
+  /*vertical-align: top;*/
   display: inline-block;
 }
 aside {
-  width: 30%;
-  margin: 0;
-  float: right;
+  height: inherit;
+  width: 29%;
+  background-color: rgba(50, 175, 200, .1);
   vertical-align: top;
   display: inline-block;
 }
 #board {
-	width: 400px;
-	height: 400px;
-	background-color: rgba(200,200,200,..1);
+	width: 408px;
+	height: 408px;
+/*	background-color: rgba(200,200,200,..1);*/
 	margin: 0 auto;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(50, 175, 200, .7);
 }
 .tile {
-	background-color: rgba(50, 175, 200, .1);;
+	background-color: rgba(50, 175, 200, .1);
 	width: 100px;
 	height: 100px;
 	float: left;
 	margin: 0;
 	padding: 0;
   text-align: center;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(50, 175, 200, .7);
 }
 .tile img {       
-        width: inherit;
-        height:inherit;
-    }
+  width: inherit;
+  height: inherit;
+  }
