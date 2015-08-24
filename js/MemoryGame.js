@@ -43,10 +43,12 @@ function flipTile(id, tileimg){ // tells tile to display
       $(id).html(tileimg); // puts data attribute(letter) into html of div.
       currentlyFlipped++;
       // debugger;
+      flipDisplay(flip1);
     } else if (currentlyFlipped == 1) {
       flip2 = id;
       $(id).html(tileimg);
       currentlyFlipped++;
+      flipDisplay(flip2);
       // console.log(flip1);
       // console.log(flip2);
       // console.log($(flip1).html())
@@ -121,10 +123,13 @@ function checkWinner() {
   }
 }
 
-
 function errorsDisplay() {
   $('#errors').addClass('show');
   $('#errors').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
+}
+function flipDisplay(flip) {
+  console.log('youre in flipDisplay')
+  console.log($(flip).find('img').attr('alt'));
 }
 
 function flicker(element){
@@ -157,41 +162,43 @@ function flicker(element){
 
 // <img src='./images/airlock.png'>
 
-var possibleTiles = ['<img src="images/airlock.png">',
-'<img src="images/area-sheilded-from-radiation.png">',
-'<img src="images/artificial-gravity-area-non-pressurized-suit-required.png">',
-'<img src="images/astronic-systems.png">',
-'<img src="images/autodoc.png">',
-'<img src="images/bridge.png">',
-'<img src="images/bulkhead-door.png">',
-'<img src="images/coffee.png">',
-'<img src="images/computer-terminal.png">',
-'<img src="images/cryogenic-vault.png">',
-'<img src="images/direction-down.png">',
-'<img src="images/direction-left.png">',
-'<img src="images/direction-right.png">',
-'<img src="images/direction-up.png">',
-'<img src="images/exhaust.png">',
-'<img src="images/galley.png">',
-'<img src="images/hazard-warning.png">',
-'<img src="images/high-radiation.png">',
-'<img src="images/intercom.png">',
-'<img src="images/ladderway.png">',
-'<img src="images/laser.png">',
-'<img src="images/life-support-systems.png">',
-'<img src="images/maintenance.png">',
-'<img src="images/medical-life-support-systems.png">',
-'<img src="images/medical.png">',
-'<img src="images/no-gravity-area-non-pressurized-suit-required.png">',
-'<img src="images/non-pressurized-area-beyond.png">',
-'<img src="images/organic-storage-foodstuffs.png">',
-'<img src="images/photonic-systems.png">',
-'<img src="images/pressure-suit-locker.png">',
-'<img src="images/pressurized-area-aritficial-gravity-absent.png">',
-'<img src="images/pressurized-area-artificial-gravity.png">',
-'<img src="images/pressurized-area.png">',
-'<img src="images/radiation-hazard.png">',
-'<img src="images/refridgerated-storage-medical.png">',
-'<img src="images/refridgerated-storage-organic-foodstuffs.png">',
-'<img src="images/refridgeration.png">',
-'<img src="images/storage.png">']
+var possibleTiles = [
+'<img src="images/airlock.png" alt="Airlock">',
+'<img src="images/area-sheilded-from-radiation.png" alt="Area is Radiation Shielded">',
+'<img src="images/artificial-gravity-area-non-pressurized-suit-required.png" alt="Pressurized Suit Required">',
+'<img src="images/astronic-systems.png" alt="Astronautic Systems">',
+'<img src="images/autodoc.png" alt="Medical Station">',
+'<img src="images/bridge.png" alt="Bridge">',
+'<img src="images/bulkhead-door.png" alt="Bulkhead Door">',
+'<img src="images/coffee.png" alt="Coffee">',
+'<img src="images/computer-terminal.png" alt="Computer Terminal">',
+'<img src="images/cryogenic-vault.png" alt="Cryogenic Vault">',
+'<img src="images/direction-down.png" alt="Direction Down">',
+'<img src="images/direction-left.png" alt="Direction Left">',
+'<img src="images/direction-right.png" alt="Direction Right">',
+'<img src="images/direction-up.png" alt="Direction Up">',
+'<img src="images/exhaust.png" alt="Engine Exhaust">',
+'<img src="images/galley.png" alt="Galley">',
+'<img src="images/hazard-warning.png" alt="Hazard Ahead">',
+'<img src="images/high-radiation.png" alt="High Radiation">',
+'<img src="images/intercom.png" alt="Intercom">',
+'<img src="images/ladderway.png" alt="Ladderway">',
+'<img src="images/laser.png" alt="Laser">',
+'<img src="images/life-support-systems.png" alt="Life Support Systems">',
+'<img src="images/maintenance.png" alt="Maintenance">',
+'<img src="images/medical-life-support-systems.png" alt="Medical Bay Life Support">',
+'<img src="images/medical.png" alt="Medical Bay">',
+'<img src="images/no-gravity-area-non-pressurized-suit-required.png" alt="Anti-Gravity Suit Required">',
+'<img src="images/non-pressurized-area-beyond.png" alt="Non-Pressurized Area Ahead">',
+'<img src="images/organic-storage-foodstuffs.png" alt="Food Storage">',
+'<img src="images/photonic-systems.png" alt="Photonic Systems">',
+'<img src="images/pressure-suit-locker.png" alt="Pressure Suit Locker">',
+'<img src="images/pressurized-area-aritficial-gravity-absent.png" alt="Pressureized Area, No Gravity">',
+'<img src="images/pressurized-area-artificial-gravity.png" alt="Pressurized Area With Gravity">',
+'<img src="images/pressurized-area.png" alt="Pressurized Area">',
+'<img src="images/radiation-hazard.png" alt="Radiation Hazard">',
+'<img src="images/refridgerated-storage-medical.png" alt="Refridgerated Medical Storage">',
+'<img src="images/refridgerated-storage-organic-foodstuffs.png" alt="Refridgerated Food Storage">',
+'<img src="images/refridgeration.png" alt="Refridgeration">',
+'<img src="images/storage.png" alt="Storage">'
+]

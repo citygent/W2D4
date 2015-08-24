@@ -38,7 +38,11 @@ p.title {
   font-size: 20px;
   line-height: 25px;
   letter-spacing: 4px;
+  margin: 15px 0;
 }
+/*p.subtitle {
+  margin-top: 11px;
+}*/
 .typingslow {
   white-space: nowrap;
   overflow: hidden;
@@ -120,13 +124,15 @@ aside p {
 .box p {
   margin: 0;
   font-size: 18px;
-  color: rgba(205, 25, 25, .6);
 }
 .box {
-  height: 50px;
+  height: 35px;
   background-color: rgba(50, 175, 200, .1);
   visibility: hidden;
-  padding: 30px 0 0 40px;
+  padding: 17px 0 0 40px;
+}
+#errors p {
+  color: rgba(205, 25, 25, .8);
 }
 .show {
   visibility: visible;
