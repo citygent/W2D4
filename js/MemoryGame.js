@@ -10,9 +10,8 @@ $(document).ready(function(){
 
 })
 
-// build game for 16 tiles first, if time refactor for any size.
+// build game for 16 tiles first, if time refactor for any size. LOL!
 var gameTiles = [];
-// var possibleTiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var flip1 = null;
 var flip2 = null;
 var currentlyFlipped = 0;
@@ -62,10 +61,12 @@ function checkMatch(flip1, flip2) {
   if ($(flip1).html() == $(flip2).html()){
     console.log("WeheyyyyY!");
     correct++;
+    matchDisplay();
     currentlyFlipped = 0;
     checkWinner();
   } else {
     errors++;
+    matchDisplay();
     errorsDisplay();
     setTimeout(function(){
       unflipTile(flip2);
@@ -122,16 +123,24 @@ function checkWinner() {
     console.log('Winner winner, chicken dinner.')
   }
 }
+function matchDisplay() {
+  if ($(flip1).html() == $(flip2).html()){
+    $('#isSuccess').css('background-color', 'rgba(25, 205, 25, .4)').addClass('show').html("<p class='typingimmediate'>SUCCESS!</p>");
+  } else {
+    $('#isSuccess').css('background-color', 'rgba(205, 25, 25, .8)').addClass('show').html("<p class='typingimmediate'>FAIL!</p>"); 
+  }
+  setTimeout(function(){
+  $('#isSuccess').removeClass('show');
+  }, 4000);  
+}
 
 function errorsDisplay() {
-  $('#errors').addClass('show');
-  $('#errors').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
+  $('#errors').addClass('show').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
 }
 
 function flipDisplay(flip) { //displays value of tile to player.
   if (currentlyFlipped == 0) {
-    $('#tile1alt').addClass('show');
-    $('#tile1alt').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
+    $('#tile1alt').addClass('show').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile1alt').removeClass('show');
       }, 3000);    
@@ -145,7 +154,7 @@ function flipDisplay(flip) { //displays value of tile to player.
 }
 
 function flicker(element){
-  element.animate({opacity:1}, {duration:200})
+  element.animate({opacity:1}, {duration:100})
   .animate({opacity:0}, {duration:10})
   .animate({opacity:1}, {duration:10})
   .animate({opacity:0}, {duration:10})
