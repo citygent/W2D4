@@ -1,15 +1,15 @@
 $(document).ready(function(){
   console.log("PRIORITY ONE\nENSURE RETURN OF ORGANISM FOR ANALYSIS.\nALL OTHER CONSIDERATIONS SECONDARY.\nCREW EXPENDABLE.");
   $logo = $('#logoimg');
+  $main = $('main');
+  $logo.css({opacity:0})
+  $main.css({opacity:0})
   setupBoard();
-  $('#logoimg').css({opacity:0})
   setTimeout(function(){
     flicker($logo);
-    flicker($('main'));
+    flicker($main);
     }, 1000);
-
 })
-
 // build game for 16 tiles first, if time refactor for any size. LOL!
 var gameTiles = [];
 var flip1 = null;
@@ -18,38 +18,34 @@ var currentlyFlipped = 0;
 var errors = 0;
 var correct = 0;
 
-
-// animating this is going to be a pain in the arse, see: http://jsfiddle.net/YaUPs/
-
-
 function eventListeners(){
-  $('.tile').on('click', function(event) {
+  $('.tile-container').on('click', function(event) {
     var id = ($(this));
-    // console.log(id);
-    // console.log($(this).attr("id")); // use correct syntax!! Last nigth you were trying ($(this).id).
-    // console.log(this.id); // non jQueeery option. 
-    var tileimg = ($(this).data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
-    // console.log(tileimg);
-    if ((currentlyFlipped < 2) && ($(id).html() == "")) { //checks target tile isn't already flipped. 
+    // console.log("id:"+id);
+    console.log($(this).find(".back").attr("id")); // use correct syntax!! Last nigth you were trying ($(this).id).
+    var tileimg = ($(this).find(".back").data("tile"));//From docs: var mydata = $( "#mydiv" ).data();
+    console.log(tileimg);
+    if ((currentlyFlipped < 2) /*&& ($(id).html() == "")*/) { //checks target tile isn't already flipped. 
       flipTile(id, tileimg);
     }
   });
 }
 
 function flipTile(id, tileimg){ // tells tile to display
+  console.log('you made it to flipTile func');
     if (currentlyFlipped == 0) {
       flip1 = id;
-      $(id).html(tileimg); // puts data attribute(letter) into html of div.
+      $(id).toggleClass('active'); // toggleclass
       // debugger;
       flipDisplay(flip1);
       currentlyFlipped++;
     } else if (currentlyFlipped == 1) {
       flip2 = id;
-      $(id).html(tileimg);
+      $(id).toggleClass('active');
       flipDisplay(flip2);
       currentlyFlipped++;
-      // console.log(flip1);
-      // console.log(flip2);
+      console.log("flip1:"+flip1);
+      console.log("flip2:"+flip2);
       // console.log($(flip1).html())
       // console.log($(flip2).html())
       // debugger;
@@ -58,7 +54,7 @@ function flipTile(id, tileimg){ // tells tile to display
 }
 
 function checkMatch(flip1, flip2) {
-  if ($(flip1).html() == $(flip2).html()){
+  if ($(flip1).find(".back").data("tile") == $(flip2).find(".back").data("tile")) {
     console.log("WeheyyyyY!");
     correct++;
     matchDisplay();
@@ -76,7 +72,7 @@ function checkMatch(flip1, flip2) {
 }
 
 function unflipTile (id) { // tells tile to hide
-    $(id).html("");
+    $(id).toggleClass('active');
     currentlyFlipped--
 }
 
@@ -91,7 +87,7 @@ function setupBoard() {
   // this forloop goes through array of selested and randomised tiles and builds divs for them on page. 
   for (i=0; i < gameTiles.length; i++) {  // have a look at jquery.each / $.each(array, function(){} when refactoring. 
  // $('<div class="tile" data-tile="'+ gameTiles[i] +'" </div>').appendTo('#board'); // this looks funny in dev tools, investigate why. 
-    $("<div class='tile' id='"+i+"' data-tile='"+ gameTiles[i] +"'></div>").appendTo("#board"); // this looks funny in dev tools, investigate why. 
+    $("<div class='tile-container'><div class='flipper'><div class='front'><img src='images/tileback.png'></div><div class='back' id='"+i+"' data-tile='"+ gameTiles[i] +"'>"+ gameTiles[i] +"</div></div></div></div>").appendTo("#board"); // this looks funny in dev tools, investigate why. 
   }
   eventListeners();
 }
@@ -117,14 +113,16 @@ function randomiseBoard(arrayOfTiles) {
 	  }
 	  return shuffled;
 }
+//====================================================================================================
 
+//====================================================================================================
 function checkWinner() {
   if (correct === 8) {
     $('#gameOver').addClass('show').html('  TESTING COMPLETE.');
   }
 }
 function matchDisplay() {
-  if ($(flip1).html() == $(flip2).html()){
+  if ($(flip1).find(".back").data("tile") == $(flip2).find(".back").data("tile")) {
     $('#isSuccess').css('background-color', 'rgba(25, 205, 25, .4)').addClass('show').html("<p class='typingimmediate'>SUCCESS!</p>");
   } else {
     $('#isSuccess').css('background-color', 'rgba(205, 25, 25, .8)').addClass('show').html("<p class='typingimmediate'>FAIL!</p>"); 
@@ -140,13 +138,13 @@ function errorsDisplay() {
 
 function flipDisplay(flip) { //displays value of tile to player.
   if (currentlyFlipped == 0) {
-    $('#tile1alt').addClass('show').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
+    $('#tile1alt').addClass('show').html("<p class='typingimmediate'>"+$(flip).find('.back').find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile1alt').removeClass('show');
       }, 3000);    
   } else if (currentlyFlipped == 1) {
     $('#tile2alt').addClass('show');
-    $('#tile2alt').html("<p class='typingimmediate'>"+$(flip).find('img').attr('alt')+"</p>");
+    $('#tile2alt').html("<p class='typingimmediate'>"+$(flip).find('.back').find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile2alt').removeClass('show');
       }, 3000);  
@@ -155,30 +153,30 @@ function flipDisplay(flip) { //displays value of tile to player.
 
 function flicker(element){
   element.animate({opacity:1}, {duration:100})
-  .animate({opacity:0}, {duration:10})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:10})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:50})
-  .animate({opacity:1}, {duration:35})
-  .animate({opacity:0}, {duration:75})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:10})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:50})
-  .animate({opacity:1}, {duration:75})
-  .animate({opacity:0}, {duration:100})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:100})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:50})
-  .animate({opacity:1}, {duration:200})
-  .animate({opacity:0}, {duration:75})
-  .animate({opacity:1}, {duration:10})
-  .animate({opacity:0}, {duration:50})
-  .animate({opacity:1}, {duration:200})
-  .animate({opacity:0}, {duration:75})
-  .animate({opacity:1}, {duration:100});
+        .animate({opacity:0}, {duration:10})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:10})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:50})
+        .animate({opacity:1}, {duration:35})
+        .animate({opacity:0}, {duration:75})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:10})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:50})
+        .animate({opacity:1}, {duration:75})
+        .animate({opacity:0}, {duration:100})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:100})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:50})
+        .animate({opacity:1}, {duration:200})
+        .animate({opacity:0}, {duration:75})
+        .animate({opacity:1}, {duration:10})
+        .animate({opacity:0}, {duration:50})
+        .animate({opacity:1}, {duration:200})
+        .animate({opacity:0}, {duration:75})
+        .animate({opacity:1}, {duration:100});
 };
 
 var possibleTiles = [

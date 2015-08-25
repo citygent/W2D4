@@ -100,7 +100,7 @@ p.title {
 }
 main {
   width: 800px;
-  height: 400px;
+  height: 408px;
 }
 section {
   height: 100%;
@@ -157,7 +157,7 @@ aside p {
   border-width: 1px;
   border-color: rgba(50, 175, 200, .7);
 }
-.tile {
+.tile-container {
 	background-color: rgba(50, 175, 200, .1);
 	width: 100px;
 	height: 100px;
@@ -169,7 +169,46 @@ aside p {
   border-width: 1px;
   border-color: rgba(50, 175, 200, .7);
 }
-.tile img {       
+.tile-container img {       
   width: inherit;
   height: inherit;
 }
+/* entire container, keeps perspective */
+.tile-container {
+  perspective: 1000;
+}
+  /* flip the pane when hovered */
+  .tile-container.active .flipper, .tile-container.active .flipper {
+    transform: rotateY(180deg);
+  }
+
+.tile-container, .front, .back {
+  width: 100px;
+  height: 100px;
+}
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
