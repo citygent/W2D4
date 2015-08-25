@@ -2,6 +2,18 @@
 /*similar to Eurostile*/
 @import url(http://fonts.googleapis.com/css?family=Anonymous+Pro:700);
 /*similar to CityLight*/
+/*#overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("../images/bg.png");
+    background-repeat: repeat;
+    opacity: 0.5;
+    z-index: 20;
+}*/
+
 html {
   background-color: black;
   color: white;
@@ -222,3 +234,17 @@ aside p {
 /* back, initially hidden pane */
 .back {
   transform: rotateY(180deg);
+}
+
+#overlay {
+  pointer-events: none;
+  z-index: 20;
+  background-image: linear-gradient(transparent 0%, rgba(10, 16, 10, 0.5) 50%);
+  background-size: 1000px 2px;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
