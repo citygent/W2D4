@@ -202,6 +202,9 @@ aside p {
   /* flip the pane when hovered */
   .tile-container.active .flipper, .tile-container.active .flipper {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
   }
 
 .tile-container, .front, .back {
@@ -227,12 +230,17 @@ aside p {
 /* front pane, placed above back */
 .front {
   z-index: 2;
-  /* for firefox 31 */
   transform: rotateY(0deg);
-}
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+} 
 
 /* back, initially hidden pane */
 .back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
