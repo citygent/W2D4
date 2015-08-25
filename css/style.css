@@ -86,6 +86,16 @@ p.title {
   0%{width: 0;}
   100%{ width: 100; } 
 }
+.typingerror {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  animation: type5 1.5s steps(60, end); 
+}
+@keyframes type5 {
+  0%{width: 0;}
+  100%{ width: 100; } 
+}
 #logo {
   width: 40%;
   display: block;

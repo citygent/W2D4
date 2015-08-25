@@ -132,15 +132,16 @@ function randomiseBoard(arrayOfTiles) {
 	  return shuffled;
 }
 //====================================================================================================
-
 //====================================================================================================
 function checkWinner() {
   if (correct === 8) {
+    playSound('complete.mp3');
     $('#gameOver').addClass('show').html('  TESTING COMPLETE.');
   }
 }
 function matchDisplay() {
   if ($(flip1).find(".back").data("tile") == $(flip2).find(".back").data("tile")) {
+    playSound('immediate.mp3');
     $('#isSuccess').css('background-color', 'rgba(25, 205, 25, .4)').addClass('show').html("<p class='typingimmediate'>SUCCESS!</p>");
   } else {
     $('#isSuccess').css('background-color', 'rgba(205, 25, 25, .8)').addClass('show').html("<p class='typingimmediate'>FAIL!</p>"); 
@@ -151,11 +152,13 @@ function matchDisplay() {
 }
 
 function errorsDisplay() {
-  $('#errors').addClass('show').html("<p class='typingimmediate'>ERRORS: "+errors+"</p>");
+  playSound('error.mp3');
+  $('#errors').addClass('show').html("<p class='typingerror'>ERRORS: "+errors+"</p>");
 }
 
 function flipDisplay(flip) { //displays value of tile to player.
   if (currentlyFlipped == 0) {
+    playSound('immediate.mp3');
     $('#tile1alt').addClass('show').html("<p class='typingimmediate'>"+$(flip).find('.back').find('img').attr('alt')+"</p>");
     setTimeout(function(){
       $('#tile1alt').removeClass('show');
