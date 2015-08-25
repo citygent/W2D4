@@ -2,17 +2,6 @@
 /*similar to Eurostile*/
 @import url(http://fonts.googleapis.com/css?family=Anonymous+Pro:700);
 /*similar to CityLight*/
-/*#overlay {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-image: url("../images/bg.png");
-    background-repeat: repeat;
-    opacity: 0.5;
-    z-index: 20;
-}*/
 
 html {
   background-color: black;
@@ -61,6 +50,11 @@ p.title {
   width: 100%;
   animation: type 6s steps(60, end); 
 }
+@-webkit-keyframes type {
+  0% { width: 0; } 
+  70%{width: 0;} /*begin after 3 seconds*/
+  100%{ width: 100; } 
+}
 @keyframes type { 
   0% { width: 0; } 
   70%{width: 0;} /*begin after 3 seconds*/
@@ -71,6 +65,11 @@ p.title {
   overflow: hidden;
   width: 100%;
   animation: type2 9s steps(60, end); 
+}
+@-webkit-keyframes type {
+  0%{width: 0;}
+  50%{width: 0;} /*begin after 3 seconds*/
+  100%{ width: 100; } 
 }
 @keyframes type2 {
   0%{width: 0;}
@@ -83,6 +82,11 @@ p.title {
   width: 100%;
   animation: type3 9s steps(60, end); 
 }
+@-webkit-keyframes type {  
+  0%{width: 0;}
+  90%{width: 0;}
+  100%{ width: 100; }  /*start after 6.5 seconds*/
+}
 @keyframes type3 {
   0%{width: 0;}
   90%{width: 0;}
@@ -94,6 +98,10 @@ p.title {
   width: 100%;
   animation: type4 2s steps(60, end); 
 }
+@-webkit-keyframes type {
+  0%{width: 0;}
+  100%{ width: 100; } 
+}
 @keyframes type4 {
   0%{width: 0;}
   100%{ width: 100; } 
@@ -103,6 +111,10 @@ p.title {
   overflow: hidden;
   width: 100%;
   animation: type5 1.5s steps(60, end); 
+}
+@-webkit-keyframes type {
+  0%{width: 0;}
+  100%{ width: 100; } 
 }
 @keyframes type5 {
   0%{width: 0;}
@@ -255,4 +267,5 @@ aside p {
   position: fixed;
   right: 0;
   top: 0;
+  opacity: 0.7;
 }
