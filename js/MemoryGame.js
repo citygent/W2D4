@@ -1,5 +1,15 @@
 $(document).ready(function(){
   console.log("PRIORITY ONE\nENSURE RETURN OF ORGANISM FOR ANALYSIS.\nALL OTHER CONSIDERATIONS SECONDARY.\nCREW EXPENDABLE.");
+  soundManager.setup({
+    url: 'swf/',
+    flashVersion: 9,
+    preferFlash: false,
+    onready: function(){
+      setTimeout(function(){
+      playSound('8secBoot.mp3');    
+      }, 1000);
+    }
+  });
   $logo = $('#logoimg');
   $main = $('main');
   $logo.css({opacity:0})
@@ -9,7 +19,7 @@ $(document).ready(function(){
     flicker($logo);
     flicker($main);
     }, 1000);
-})
+});
 // build game for 16 tiles first, if time refactor for any size. LOL!
 var gameTiles = [];
 var flip1 = null;
@@ -17,6 +27,14 @@ var flip2 = null;
 var currentlyFlipped = 0;
 var errors = 0;
 var correct = 0;
+
+
+function playSound(filename) {
+  var sound = soundManager.createSound({
+    url: 'sounds/' + filename
+  });
+  sound.play();
+}
 
 function eventListeners(){
   $('.tile-container').on('click', function(event) {
@@ -158,25 +176,27 @@ function flicker(element){
         .animate({opacity:0}, {duration:10})
         .animate({opacity:1}, {duration:10})
         .animate({opacity:0}, {duration:50})
-        .animate({opacity:1}, {duration:35})
-        .animate({opacity:0}, {duration:75})
-        .animate({opacity:1}, {duration:10})
-        .animate({opacity:0}, {duration:10})
-        .animate({opacity:1}, {duration:10})
-        .animate({opacity:0}, {duration:50})
+        // .animate({opacity:1}, {duration:25})
+        // .animate({opacity:0}, {duration:75})
+        // .animate({opacity:1}, {duration:10})
+        // .animate({opacity:0}, {duration:10})
+        // .animate({opacity:1}, {duration:10})
+        // .animate({opacity:0}, {duration:50})
         .animate({opacity:1}, {duration:75})
-        .animate({opacity:0}, {duration:100})
-        .animate({opacity:1}, {duration:10})
-        .animate({opacity:0}, {duration:100})
-        .animate({opacity:1}, {duration:10})
-        .animate({opacity:0}, {duration:50})
+        .animate({opacity:0}, {duration:25})
+        .animate({opacity:1}, {duration:85})
+        .animate({opacity:0}, {duration:10})
+        .animate({opacity:1}, {duration:100})
+        .animate({opacity:0}, {duration:25})
+        .animate({opacity:1}, {duration:110})
+        .animate({opacity:0}, {duration:40})
         .animate({opacity:1}, {duration:200})
-        .animate({opacity:0}, {duration:75})
-        .animate({opacity:1}, {duration:10})
-        .animate({opacity:0}, {duration:50})
-        .animate({opacity:1}, {duration:200})
-        .animate({opacity:0}, {duration:75})
-        .animate({opacity:1}, {duration:100});
+        .animate({opacity:0}, {duration:55})
+        .animate({opacity:1}, {duration:105})
+        .animate({opacity:0}, {duration:25})
+        .animate({opacity:1}, {duration:150})
+        .animate({opacity:0}, {duration:25})
+        .animate({opacity:1}, {duration:100}); // 1500ms in total. 
 };
 
 var possibleTiles = [

@@ -43,38 +43,38 @@ p.title {
 /*p.subtitle {
   margin-top: 11px;
 }*/
-.typingslow {
+.typingtitle {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  animation: type 7s steps(60, end); 
+  animation: type 6s steps(60, end); 
 }
 @keyframes type { 
   0% { width: 0; } 
-  25%{width: 0;}
+  70%{width: 0;} /*begin after 3 seconds*/
   100%{ width: 100; } 
 } 
-.typingfast {
+.typingsub {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  animation: type2 8s steps(60, end); 
+  animation: type2 9s steps(60, end); 
 }
 @keyframes type2 {
   0%{width: 0;}
-  75%{width: 0;}
+  50%{width: 0;} /*begin after 3 seconds*/
   100%{ width: 100; } 
 }
-.typingfastdelayed {
+.typingaside {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  animation: type3 10s steps(60, end); 
+  animation: type3 9s steps(60, end); 
 }
 @keyframes type3 {
   0%{width: 0;}
-  80%{width: 0;}
-  100%{ width: 100; } 
+  90%{width: 0;}
+  100%{ width: 100; }  /*start after 6.5 seconds*/
 }
 .typingimmediate {
   white-space: nowrap;
